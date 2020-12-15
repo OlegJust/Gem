@@ -1,0 +1,213 @@
+@charset "UTF-8";
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*--------------------*/
+body {
+  background-color: black;
+
+}
+.table{
+  color: white;
+}
+.player {
+  position: fixed;
+  width: 20%;
+  height: 20%;
+  border: 1px solid #ff0000;
+}
+.player1 {
+  display: flex;
+  flex-direction:column;
+  justify-content:space-between;
+  left: 40%;
+  top: 10px;
+}
+.player2 {
+  left: 80%;
+  top: 20%
+}
+.player3 {
+  left: 80%;
+  top: 50%
+}
+.player4 {
+  height: 30%;
+  left: 40%;
+  top: 70%
+}
+.BankerCart {
+  height: 100%;
+}
+.playerCart {
+  height: 57%;
+}
+.BankerName {
+  text-align: center;
+  height: auto;
+  border: 1px solid #c7a3a3;
+}
+.playerName {
+  text-align: center;
+  height: auto;
+  border: 1px solid #c7a3a3;
+}
+.butoonPlayr {
+  height: 33%;
+  border: 1px solid #ff0000;
+}
+.take_or_leave {
+  display: none;
+}
+.rate {
+  display: flex;
+  align-items:center;
+}
+.rate input {
+  width: 50%;
+}
+.player5 {
+  top: 20%
+}
+.player6 {
+  top: 50%
+}
+.Carts {
+  display: flex;
+  justify-content:space-between;
+}
+.Cart {
+  width: 100%;
+  border: 1px solid #ffffff;
+}
+.setting_butoon {
+  left: 90%;
+  top: 10px;
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #ff0000;
+  background-color: white;
+  padding: 10px;
+}
+.setting_butoon img {
+  width: 100%;
+  height: 100%;
+}
+.setting {
+  display: none;
+  position: fixed;
+  left: 30%;
+  top: 40%;
+  width: 40%;
+  height: 100px;
+  background-color: white;
+  border: 1px solid #26c100;
+  z-index: 2;
+}
+.setting input {
+  width: 100px;
+  border: 1px solid #26c100;
+}
+.points {
+  color: #000000;
+}
+.ace {
+  color: black;
+  display: flex;
+}
+.ace input {
+  width: auto;
+  margin: 0 10px;
+
+}
+.deck {
+  display: flex;
+  position: fixed;
+  width: 20%;
+  height: 20%;
+  top: 40%;
+  left: 40%;
+}
+.remainingВeck {
+  height: 100%;
+  width: 50%;
+  border: 1px solid #ff0000;
+}
+.underDeck {
+  width: 50%;
+  padding: 10% 0 10% 10%;
+}
+.CartUnderDeck{
+  height: 100%;
+  border: 1px solid #ffffff;
+}

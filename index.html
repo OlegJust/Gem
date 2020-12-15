@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Игра</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="table">
+    <div class="player1 player">
+        <div class="BankerCart Carts">
+        </div>
+        <div class="BankerName">
+            <div class="BankerName_Name">Banker Очков: 0</div>
+            <div class="BankerName_Ru">Банк: 1000 --- Name: Vitya</div>
+        </div>
+    </div>
+    <div class="player2 player"></div>
+    <div class="player3 player"></div>
+    <div class="player4 player">
+        <div class="playerCart Carts">
+        </div>
+        <div class="playerName">
+            <div class="playerName_Name">Player Очков: 0</div>
+            <div class="playerName_Ru">Баланс: 100 --- Name: Oleg</div>
+        </div>
+        <div class="butoonPlayr">
+            <div class="rate">
+                <input id="rateInput" value="10" name="beer" type="number"/>
+                <button id="rateButton">Сохранить</button>
+            </div>
+            <div class="take_or_leave">
+                <button id="take">Скинуть</button>
+                <button id="leave">Ище</button>
+            </div>
+        </div>
+    </div>
+    <div class="player5 player"></div>
+    <div class="player6 player"></div>
+    <div class="setting_butoon">
+        <img src="./img/menu.png" alt="">
+    </div>
+    <div class="setting">
+        <div class="points">Banker Банк: <input id="BankerBank" value="1000" name="beer" type="number"/></div>
+        <div class="points">Player Баланс: <input id="PlayerBalans" value="100" name="beer" type="number"/></div>
+        <div class="ace">
+            <p><input id="r3" tabindex="1" type="radio" name="beer" value="lager">Туз равен = 11</p>
+            <p><input id="r2" tabindex="1" type="radio" name="beer" value="darge">Туз равен = 1</p>
+            <p><input id="r1" tabindex="1" checked type="radio" name="beer" value="darge">Туз равен = 1 / 11</p>
+        </div>
+        <div class="settingBu">
+            <button>Сохранить</button>
+        </div>
+    </div>
+    <div class="deck">
+        <div class="underDeck"></div>
+        <div class="remainingВeck"></div>
+    </div>
+
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
