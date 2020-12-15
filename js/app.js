@@ -395,6 +395,7 @@ function bot(it) {
             }else if (proverc === false){
                 alert("Победил банкир")
             }
+            balance(proverc)
         }()
 
 
