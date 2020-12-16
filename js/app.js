@@ -133,14 +133,7 @@ function shuffle(array) {
 function TrackingDeck() {
     document.querySelector('.remainingВeck').textContent = `В колоде ${plaerCatRun.length}`
     if (plaerCatRun.length < 11) {
-        Player = []
-        Banker = []
-        underDeck = []
-        plaerCatRun = shuffle(plaerCat)
-        game(Player)
-        game(Banker)
-        game(underDeck)
-        addingCards()
+        newGame()
     }
 }
 //------------------------------------------------------------------------
