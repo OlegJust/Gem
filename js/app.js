@@ -1,44 +1,3 @@
-
-let NAce = "1"
-
-let discardedCards = []
-let goldenPoint = false
-
-// ---------------------------------------------------------- setting
-
-
-let setting_butoon = document.querySelector('.setting_butoon')
-let setting = document.querySelector('.setting')
-setting_butoon.onclick = function(event) {
-    // setting.style.display = "none"
-    if ( setting.style.display === "none") {
-        setting.style.display = "block"
-    } else {
-        setting.style.display = "none"
-    }
-
-};
-
-let t1 = document.getElementById('BankerBank')
-let t2 = document.getElementById('PlayerBalans') // ------------------------------ Баланс
-let settingBu = document.querySelector('.settingBu')
-settingBu.onclick = function () {
-    document.querySelector('.BankerName_Ru').textContent = `Банк: ${t1.value} --- Name: Vitya`
-    document.querySelector('.playerName_Ru').textContent = `Баланс: ${t2.value} --- Name: Oleg`
-    let Ace1 = document.getElementById('r1').checked // -------------- первый туз
-    let Ace2 = document.getElementById('r2').checked // ------------------- второй туз
-    let Ace3 = document.getElementById('r3').checked
-    if (Ace1 === true){
-        NAce = "1/11"
-    } else if (Ace2 === true) {
-        NAce = "1"
-    }else if (Ace3 === true){
-        NAce = "11"
-    }
-    console.log(NAce)
-}
-
-// -------------------------------------------------------------------------
 // ------------------------------------------------------------------------- Cart
 
 const cart  = [
@@ -71,7 +30,7 @@ let partyСards = cart.map((el) => {
     // console.log(Math.random().toString().slice(2,3))
 })
 let plaerCat = []
-let plaerCatF = function() {
+function plaerCatF() {
     for (let namy of cart[0]) {
         plaerCat[plaerCat.length] = namy + " ♠"
     }
@@ -84,10 +43,75 @@ let plaerCatF = function() {
     for (let namy of cart[3]) {
         plaerCat[plaerCat.length] = namy + " ♦"
     }
-}()
+}
+plaerCatF()
+//--------------------------------------------------------------
+
+let NAce = "1"
+let plaerCatRun = shuffle(plaerCat)
+let discardedCards = []
+let goldenPoint = false
+let underDeck = []
+let bankerPoints = 0
+let Banker = []
+let playerPoints = 0
+let Player = []  // ------------------------------------------ Сдесь храняться карты, которые в руке
+
+// ---------------------------------------------------------- setting
+
+
+let setting_butoon = document.querySelector('.setting_butoon')
+let setting = document.querySelector('.setting')
+setting_butoon.onclick = function(event) {
+    // setting.style.display = "none"
+    if ( setting.style.display === "none") {
+        setting.style.display = "flex"
+    } else {
+        setting.style.display = "none"
+    }
+
+};
+
+let t1 = document.getElementById('BankerBank')
+let t2 = document.getElementById('PlayerBalans') // ------------------------------ Баланс
+let settingBu = document.querySelector('.settingBu')
+
+//-------------------------------------- кнопка сохранить
+settingBu.onclick = function () {
+    document.querySelector('.BankerName_Ru').textContent = `Банк: ${t1.value} --- Name: Vitya`
+    document.querySelector('.playerName_Ru').textContent = `Баланс: ${t2.value} --- Name: Oleg`
+    let Ace1 = document.getElementById('r1').checked // -------------- первый туз
+    let Ace2 = document.getElementById('r2').checked // ------------------- второй туз
+    let Ace3 = document.getElementById('r3').checked
+    if (Ace1 === true){
+        NAce = "1/11"
+    } else if (Ace2 === true) {
+        NAce = "1"
+    }else if (Ace3 === true){
+        NAce = "11"
+    }
+    newGame()
+    setting.style.display = "none"
+}
+
+// -------------------------------------------------------------------------
+// ------------------------------------------------------------------- Новая игра
+function newGame() {
+    console.log(NAce)
+    discardCards(Player)
+    discardCards(Banker)
+    discardCards(underDeck)
+    plaerCat = []
+    plaerCatF()
+    plaerCatRun = shuffle(plaerCat)
+    game(Player)
+    game(Banker)
+    game(underDeck)
+    addingCards()
+}
 // ------------------------------ перемешывает массив
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (0 !== currentIndex) {
 
@@ -102,25 +126,25 @@ function shuffle(array) {
     return array;
 }
 // --------------------------------------
-let plaerCatRun = shuffle(plaerCat)
 
-let underDeck = []
-let bankerPoints = 0
-let Banker = []
-let playerPoints = 0
-let Player = []  // ------------------------------------------ Сдесь храняться карты, которые в руке
+
 
 //------------------------------------------------------------------------ Слежка за колодой
 function TrackingDeck() {
     document.querySelector('.remainingВeck').textContent = `В колоде ${plaerCatRun.length}`
     if (plaerCatRun.length < 11) {
-        location.reload()
+        Player = []
+        Banker = []
+        underDeck = []
+        plaerCatRun = shuffle(plaerCat)
+        game(Player)
+        game(Banker)
+        game(underDeck)
+        addingCards()
     }
 }
 //------------------------------------------------------------------------
-game(Banker)
-game(Player)
-game(underDeck)
+
 function game(player) { // ---------------------------------------- Взять карту
     player[player.length] = plaerCatRun.pop()
     TrackingDeck()
@@ -138,7 +162,6 @@ function addingCards() {
     scoring(Player)
     takeCard(underDeck)
 }
-addingCards()
 // ------------------------------------------- 
 
 
@@ -264,6 +287,7 @@ function scoring(player) {
 //-----------------------------------------------------------------------
 //----------------------------------------------------------------------- Кнопка ище
 let buttonLock = true
+let buttonLock2 = true
 document.getElementById('leave').onclick = function () {
     if (buttonLock) {
         if (playerPoints < 21){
@@ -281,11 +305,13 @@ document.getElementById('leave').onclick = function () {
             losing(true,Player )
             balance(true)
             buttonLock = false
+            buttonLock2 = false
             check = false
         } else if (playerPoints > 21 && check) {
             losing(false,Player )
             balance(false)
             buttonLock = false
+            buttonLock2 = false
             check = false
         }
     }
@@ -335,6 +361,8 @@ function discardCards(player) {
     scoring(player)
     if (player === Banker) {
         document.querySelector('.BankerCart').innerHTML = ""
+    } else if(underDeck === player) {
+        document.querySelector('.underDeck').innerHTML = ""
     }
     document.querySelector('.playerCart').innerHTML = ""
     document.querySelector('.take_or_leave').style.display = "none"
@@ -342,13 +370,16 @@ function discardCards(player) {
 }
 // -------------------------------------------------------- Скинуть 
 document.getElementById('take').onclick = function () {
-    bot(playerPoints)
+    if (buttonLock2 === true) {
+        bot(playerPoints)
+    }
+
 
 }
 // --------------------- Бот
 function bot(it) {
     let proverc = undefined
-    for (let i = true; i === true;  ){// -- не работатет
+    for (let i = true; i === true;  ){
         if (bankerPoints > 21) {
 
         }
